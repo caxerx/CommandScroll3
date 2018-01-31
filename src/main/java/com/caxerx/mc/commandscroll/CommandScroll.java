@@ -18,4 +18,9 @@ public class CommandScroll extends JavaPlugin {
     public void onLoad() {
         //
     }
+
+    @Override
+    public void onEnable() {
+        setupPermissions();
+    }
 }

@@ -27,7 +27,7 @@ public class ConditionParser {
                 stringBuilder.append(" AND ");
             }
         }
-        return stringBuilder.append(" ORDER BY use_time DESC LIMIT 100;").toString();
+        return stringBuilder.append(" ORDER BY use_time DESC LIMIT 8;").toString();
     }
 
     public String parse(String condition, Player player) {

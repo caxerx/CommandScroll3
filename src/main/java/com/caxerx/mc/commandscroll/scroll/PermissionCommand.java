@@ -2,7 +2,6 @@ package com.caxerx.mc.commandscroll.scroll;
 
 import lombok.AccessLevel;
 import lombok.Setter;
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -13,10 +12,18 @@ public class PermissionCommand extends Command {
     List<String> permission = new ArrayList<>();
 
     protected PermissionCommand() {
+        super(CommandType.PERMISSION);
+    }
+
+    protected void addPermission(String perm) {
+        permission.add(perm);
     }
 
     @Override
     public void execute(Player player) {
-        throw new NotImplementedException();
+        PermissionManager permManager = PermissionManager.getInstance();
+        List<String> granted = permManager.addForbidden(player, permission);
+        player.performCommand(command);
+        permManager.removeGranted(player, granted);
     }
 }

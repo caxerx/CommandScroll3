@@ -4,10 +4,9 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseController {
     private HikariDataSource hikariDataSource;
@@ -24,14 +23,14 @@ public class DatabaseController {
         hikariDataSource = new HikariDataSource(config);
     }
 
-    public void addLog(String player, String uuid, String scroll, long useTime, String world, int x, int y, int z) {
+    public void addLog(String uuid, String player, String scroll, long useTime, String world, int x, int y, int z) {
         PreparedStatement ps = null;
         Connection connection = null;
         try {
             connection = hikariDataSource.getConnection();
             ps = connection.prepareStatement("INSERT INTO UsageLog VALUES(?,?,?,?,?,?,?,?);");
-            ps.setString(1, player);
-            ps.setString(2, uuid);
+            ps.setString(1, uuid);
+            ps.setString(2, player);
             ps.setString(3, scroll);
             ps.setTimestamp(4, new Timestamp(useTime));
             ps.setString(5, world);
@@ -55,7 +54,40 @@ public class DatabaseController {
             }
 
         }
+    }
 
-
+    public List<QueryResult> queryLog(String statement) {
+        Connection connection = null;
+        Statement connectionStatement = null;
+        ArrayList<QueryResult> results = new ArrayList<>();
+        try {
+            connection = hikariDataSource.getConnection();
+            connectionStatement = connection.createStatement();
+            ResultSet queryResult = connectionStatement.executeQuery(statement);
+            while (queryResult.next()) {
+                String player = queryResult.getString("player_name");
+                String scroll = queryResult.getString("scroll_name");
+                String world = queryResult.getString("world");
+                int x = queryResult.getInt("x");
+                int y = queryResult.getInt("y");
+                int z = queryResult.getInt("z");
+                long time = queryResult.getTimestamp("use_time").toInstant().getEpochSecond();
+                results.add(new QueryResult(player, scroll, world, x, y, z, time));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connectionStatement.close();
+            } catch (Exception e) {
+                //ignore
+            }
+            try {
+                connection.close();
+            } catch (Exception e) {
+                //ignore
+            }
+        }
+        return results;
     }
 }

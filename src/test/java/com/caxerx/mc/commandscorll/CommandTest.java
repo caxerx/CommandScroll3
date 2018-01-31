@@ -22,15 +22,9 @@ public class CommandTest {
 
     @Test
     public void commandFormat() {
-        //caxerx used scroll_jj in world:x,y,z (10h ago)
-        //(1337h ago) (20s ago) (3m ago)
-    }
-
-    @Test
-    public void timeFormat() {
-        DatabaseQuery dtq = new DatabaseQuery(new TimeDisplayConfig("日", "小時", "分鐘", "秒", "在 <time> 之前"));
-        System.out.println(dtq.getFormatedTimeAgo(1517376269370L));
-        DatabaseQuery dtq2 = new DatabaseQuery(new TimeDisplayConfig("d", "h", "m", "s", "<time> ago"));
-        System.out.println(dtq2.getFormatedTimeAgo(1517376269370L));
+        QueryResult qta = new QueryResult("caxerx", "jscroll", "mkworld", 0, 0, 0, System.currentTimeMillis());
+        QueryResultBuilder qrb = new QueryResultBuilder(new TimeDisplayConfig("d", "h", "m", "s", "(<time> ago)"));
+        qrb.append(qta).append(qta).append(qta).append(qta).append(qta).append(qta).append(qta);
+        System.out.println(qrb.build().toPlainText());
     }
 }

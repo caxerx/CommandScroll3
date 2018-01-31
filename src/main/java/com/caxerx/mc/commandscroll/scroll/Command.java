@@ -4,8 +4,13 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
-@Data
 public abstract class Command implements Executable {
     @Setter(AccessLevel.PROTECTED)
-    private String command;
+    protected String command;
+    @Setter(AccessLevel.NONE)
+    private CommandType type;
+
+    public Command(CommandType type) {
+        this.type = type;
+    }
 }

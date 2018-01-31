@@ -1,7 +1,11 @@
 package com.caxerx.mc.commandscorll;
 
-import com.caxerx.mc.commandscroll.placeholder.CommandParser;
+import com.caxerx.mc.commandscroll.placeholder.PlaceholderParser;
 import com.caxerx.mc.commandscroll.Registrable;
+import com.caxerx.mc.commandscroll.placeholder.PlayerFunctionPlaceholder;
+import com.caxerx.mc.commandscroll.placeholder.VariableManager;
+import com.caxerx.mc.commandscroll.placeholder.VariablePlaceholder;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.junit.Test;
 
@@ -15,29 +19,15 @@ import java.util.regex.Pattern;
 public class RegexTest {
     @Test
     public void placeholderRegex() {
-        CommandParser cps = new CommandParser();
-        cps.registerPlaceholder(new Registrable() {
-            @Override
-            public String parse(String original, Player player) {
-                return "caxerx";
-            }
+        PlaceholderParser cps = new PlaceholderParser();
+        cps.registerPlaceholder(new PlayerFunctionPlaceholder("name", HumanEntity::getName));
+        VariableManager varm = new VariableManager();
+        varm.put("victim", "SlenderDan");
+        cps.registerPlaceholder(new VariablePlaceholder());
 
-            @Override
-            public boolean match(String original) {
-                if (original.equals("<player>")) {
-                    return true;
-                }
-                return false;
-            }
-
-            @Override
-            public String getId() {
-                return "player";
-            }
-        });
-
-        System.out.println(cps.parse("/setlocation <player> 13 133 23", null));
+        System.out.println(cps.parse("/tp <var:victim> <name>", null));
     }
+
 
     @Test
     public void timeRegex() {
