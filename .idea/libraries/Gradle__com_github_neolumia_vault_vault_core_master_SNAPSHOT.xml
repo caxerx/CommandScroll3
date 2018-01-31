@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.neolumia.vault:vault-core:master-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.neolumia.vault/vault-core/master-SNAPSHOT/d9e7e403658059acd718f7b0af5fb6bfe6427c33/vault-core-master-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.neolumia.vault/vault-core/master-SNAPSHOT/1b79fb2945387370867a283b9ddc27111315093f/vault-core-master-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
