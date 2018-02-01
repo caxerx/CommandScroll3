@@ -11,7 +11,7 @@ public class DBLoggingTest {
     public void testLog() {
         ScrollLogger logger = new ScrollLogger(new File("./log.db"));
         for (int i = 0; i < 5000; i++) {
-            logger.log(new FakePlayer(), new Scroll("scroll"));
+            logger.log(new FakePlayer(), new Scroll(String.valueOf((int) (Math.random() * 100))));
         }
     }
 }

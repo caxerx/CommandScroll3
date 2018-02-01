@@ -11,6 +11,7 @@ public class DefaultCommand extends CommandNode {
         super("commandscroll", null);
         addAlias("cs");
         addSub(new ListCommand());
+        addSub(new InfoCommand());
     }
 
     @Override

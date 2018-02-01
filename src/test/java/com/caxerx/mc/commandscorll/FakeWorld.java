@@ -233,7 +233,7 @@ public class FakeWorld implements World {
 
     @Override
     public String getName() {
-        return "fakeworld";
+        return "world";
     }
 
     @Override
@@ -678,6 +678,11 @@ public class FakeWorld implements World {
 
     @Override
     public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, T data) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public Spigot spigot() {
         throw new NotImplementedException();
     }
 

@@ -2,6 +2,7 @@ package com.caxerx.mc.commandscroll.logging.query.condition;
 
 import com.caxerx.mc.commandscroll.Registrable;
 import lombok.NonNull;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -9,6 +10,21 @@ import java.util.List;
 
 public class ConditionParser {
     private List<Registrable> registeredCondition = new ArrayList<>();
+    private static ConditionParser instance;
+
+    public ConditionParser() {
+        registerCondition(new EqualDatabaseCondition("w", "world"));
+        registerCondition(new EqualDatabaseCondition("p", "player_name"));
+        registerCondition(new EqualDatabaseCondition("u", "player_uuid"));
+        registerCondition(new EqualDatabaseCondition("s", "scroll_name"));
+        registerCondition(new TimeDatabaseCondition());
+        registerCondition(new RangeDatabaseCondition());
+        instance = this;
+    }
+
+    public static ConditionParser getInstance() {
+        return instance;
+    }
 
     public void registerCondition(@NonNull Registrable placeholder) {
         for (Registrable existPlaceholder : registeredCondition) {
@@ -19,14 +35,18 @@ public class ConditionParser {
         registeredCondition.add(placeholder);
     }
 
-    public String toSql(@NonNull String[] conditions, @NonNull Player player) {
-        StringBuilder stringBuilder = new StringBuilder("SELECT * FROM UsageLog WHERE ");
-        for (int i = 0; i < conditions.length; i++) {
-            String parsed = parse(conditions[i], player);
-            stringBuilder.append(parsed);
-            if (!parsed.equals("") && i != conditions.length - 1) {
-                stringBuilder.append(" AND ");
+    public String toSql(@NonNull List<String> conditions, @NonNull Player player) {
+        StringBuilder stringBuilder = new StringBuilder("SELECT * FROM UsageLog");
+        List<String> conditionList = new ArrayList<>();
+        for (int i = 0; i < conditions.size(); i++) {
+            String parsed = parse(conditions.get(i), player);
+            if (!parsed.equals("")) {
+                conditionList.add(parsed);
             }
+        }
+        if (conditionList.size() > 0) {
+            stringBuilder.append(" WHERE ");
+            stringBuilder.append(String.join(" AND ", conditionList));
         }
         return stringBuilder.append(" ORDER BY use_time DESC LIMIT 8;").toString();
     }

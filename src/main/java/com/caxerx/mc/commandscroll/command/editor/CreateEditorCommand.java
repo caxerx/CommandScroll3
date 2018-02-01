@@ -9,9 +9,10 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-public class AddEditorCommand extends CommandNode {
-    public AddEditorCommand() {
-        super("add", "commandscroll.edit");
+public class CreateEditorCommand extends CommandNode {
+    public CreateEditorCommand() {
+        super("create", "commandscroll.edit");
+        addAlias("add");
     }
 
     @Override
@@ -21,14 +22,13 @@ public class AddEditorCommand extends CommandNode {
         }
         Scroll scroll = new Scroll(args.get(0));
         ScrollManager.getInstance().addScroll(scroll);
-        CommandSelectManager.getInstance().selectScroll(sender, scroll);
-        sender.sendMessage("create and added selected scroll " + scroll.getName());
+        CommandSelectManager.getInstance().selectScroll(sender, args.get(0));
+        sender.sendMessage("created and selected scroll " + scroll.getName());
         return true;
     }
 
     @Override
     public List<String> executeTabCompletion(CommandSender sender, List<String> args) {
-
         return null;
     }
 }

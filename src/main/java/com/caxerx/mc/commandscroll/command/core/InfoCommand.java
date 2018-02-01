@@ -5,6 +5,8 @@ import com.caxerx.mc.commandscroll.command.CommandNode;
 import com.caxerx.mc.commandscroll.command.CommandSelectManager;
 import com.caxerx.mc.commandscroll.scroll.Scroll;
 import com.caxerx.mc.commandscroll.scroll.ScrollManager;
+import com.caxerx.mc.commandscroll.scroll.command.CommandType;
+import com.caxerx.mc.commandscroll.scroll.command.PermissionCommand;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
@@ -21,7 +23,14 @@ public class InfoCommand extends CommandNode {
         }
         Scroll scroll = ScrollManager.getInstance().getScroll(args.get(0));
         sender.sendMessage("scroll: " + scroll.getName());
-        scroll.getCommands().forEach(cmd -> sender.sendMessage(cmd.getType() + " " + cmd.getCommand()));
+        scroll.getCommands().forEach(cmd -> {
+            sender.sendMessage(cmd.getType() + " " + cmd.getCommand());
+            if (cmd instanceof PermissionCommand) {
+                ((PermissionCommand) cmd).getPermission().forEach(pem -> {
+                    sender.sendMessage(" -" + pem);
+                });
+            }
+        });
         return true;
     }
 

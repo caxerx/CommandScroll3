@@ -3,19 +3,18 @@ package com.caxerx.mc.commandscroll.command.editor.cmd;
 import com.caxerx.mc.commandscroll.command.CommandArgumentException;
 import com.caxerx.mc.commandscroll.command.CommandNode;
 import com.caxerx.mc.commandscroll.command.CommandSelectManager;
-import com.caxerx.mc.commandscroll.scroll.Scroll;
-import com.caxerx.mc.commandscroll.scroll.command.CommandBuilder;
-import com.caxerx.mc.commandscroll.scroll.command.ExecutableCommand;
+import com.caxerx.mc.commandscroll.scroll.command.PermissionCommand;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-public class AddCommandEditorCommand extends CommandNode {
+public class CommandAddPermissionEditorCommand extends CommandNode {
     private CommandSelectManager commandSelectManager;
 
-    public AddCommandEditorCommand() {
-        super("add", "commandscroll.edit");
+    public CommandAddPermissionEditorCommand() {
+        super("addpermission", "commandscroll.edit");
         commandSelectManager = CommandSelectManager.getInstance();
+        addAlias("ap");
     }
 
     @Override
@@ -24,12 +23,16 @@ public class AddCommandEditorCommand extends CommandNode {
             throw new CommandArgumentException("perm");
         }
         if (commandSelectManager.isSelectedScroll(sender)) {
-            ExecutableCommand command = new CommandBuilder().player().set(String.join(" ", args)).build();
-            Scroll scroll = commandSelectManager.getSelectedScroll(sender);
-            int index = scroll.getCommands().size();
-            scroll.addCommand(command);
-            commandSelectManager.selectCommand(sender, index);
-            sender.sendMessage("added command to " + scroll.getName());
+            if (commandSelectManager.isSelectedCommand(sender)) {
+                if (commandSelectManager.getSelectedCommand(sender) instanceof PermissionCommand) {
+                    ((PermissionCommand) commandSelectManager.getSelectedCommand(sender)).addPermission(args.get(0));
+                    sender.sendMessage("added perm");
+                } else {
+                    sender.sendMessage("not a perm cmd");
+                }
+            } else {
+                sender.sendMessage("select command first");
+            }
         } else {
             sender.sendMessage("select scroll first");
         }

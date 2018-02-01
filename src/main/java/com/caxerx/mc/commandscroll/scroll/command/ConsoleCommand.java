@@ -5,7 +5,6 @@ import lombok.NonNull;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-@Data
 public class ConsoleCommand extends ExecutableCommand {
     protected ConsoleCommand() {
         super(CommandType.CONSOLE);

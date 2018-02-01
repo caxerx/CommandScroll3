@@ -1,6 +1,7 @@
 package com.caxerx.mc.commandscroll.command.editor;
 
 import com.caxerx.mc.commandscroll.command.CommandNode;
+import com.caxerx.mc.commandscroll.command.editor.cmd.DefaultCommandEditorCommand;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
@@ -10,8 +11,10 @@ public class DefaultEditorCommand extends CommandNode {
         super("commandscrolleditor", "commandscroll.edit");
         addAlias("cse");
         addSub(new SelectEditorCommand());
-        addSub(new AddEditorCommand());
-
+        addSub(new CreateEditorCommand());
+        addSub(new InfoEditorCommand());
+        addSub(new CommitEditorCommand());
+        addSub(new DefaultCommandEditorCommand());
     }
 
     @Override

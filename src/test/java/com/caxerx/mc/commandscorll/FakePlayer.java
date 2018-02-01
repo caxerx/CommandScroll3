@@ -716,6 +716,11 @@ public class FakePlayer implements Player {
     }
 
     @Override
+    public Spigot spigot() {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public Map<String, Object> serialize() {
         throw new NotImplementedException();
     }

@@ -12,6 +12,7 @@ import java.util.List;
 
 public class DatabaseController {
     private HikariDataSource hikariDataSource;
+    private static DatabaseController instance;
 
     public DatabaseController(@NonNull File databaseFile) {
         HikariConfig config = new HikariConfig();
@@ -23,6 +24,11 @@ public class DatabaseController {
         config.setIdleTimeout(45000); // 45 Sec
         config.setMaximumPoolSize(50); // 50 Connections (including idle connections)
         hikariDataSource = new HikariDataSource(config);
+        instance = this;
+    }
+
+    public static DatabaseController getInstance() {
+        return instance;
     }
 
     public void addLog(@NonNull String uuid, @NonNull String player, @NonNull String scroll, long useTime, @NonNull String world, int x, int y, int z) {
@@ -70,10 +76,10 @@ public class DatabaseController {
                 String player = queryResult.getString("player_name");
                 String scroll = queryResult.getString("scroll_name");
                 String world = queryResult.getString("world");
-                int x = queryResult.getInt("x");
-                int y = queryResult.getInt("y");
-                int z = queryResult.getInt("z");
-                long time = queryResult.getTimestamp("use_time").toInstant().getEpochSecond();
+                int x = queryResult.getInt("location_x");
+                int y = queryResult.getInt("location_y");
+                int z = queryResult.getInt("location_z");
+                long time = queryResult.getTimestamp("use_time").getTime();
                 results.add(new QueryResult(player, scroll, world, x, y, z, time));
             }
         } catch (SQLException e) {

@@ -2,6 +2,7 @@ package com.caxerx.mc.commandscroll.scroll.command;
 
 import com.caxerx.mc.commandscroll.scroll.PermissionManager;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import org.bukkit.entity.Player;
@@ -11,13 +12,14 @@ import java.util.List;
 
 public class PermissionCommand extends ExecutableCommand {
     @Setter(AccessLevel.PROTECTED)
+    @Getter
     List<String> permission = new ArrayList<>();
 
     protected PermissionCommand() {
         super(CommandType.PERMISSION);
     }
 
-    protected void addPermission(@NonNull String perm) {
+    public void addPermission(@NonNull String perm) {
         permission.add(perm);
     }
 

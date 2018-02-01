@@ -14,7 +14,7 @@ public class ScrollManager {
     private static ScrollManager instance;
 
     public ScrollManager() {
-        gson = new GsonBuilder().registerTypeAdapter(ExecutableCommand.class, CommandDeserializer.class).create();
+        gson = new GsonBuilder().registerTypeAdapter(ExecutableCommand.class, new CommandDeserializer()).create();
         instance = this;
     }
 
@@ -30,6 +30,10 @@ public class ScrollManager {
         return registeredScroll.get(name);
     }
 
+    public void setScroll(@NonNull String name, @NonNull Scroll scroll) {
+        registeredScroll.put(name, scroll);
+    }
+
     public HashMap<String, Scroll> getAllScroll() {
         return registeredScroll;
     }
@@ -37,6 +41,7 @@ public class ScrollManager {
     public ExecutableCommand cloneCommand(ExecutableCommand cmd) {
         return gson.fromJson(gson.toJson(cmd), ExecutableCommand.class);
     }
+
     public Scroll cloneScroll(Scroll scroll) {
         return gson.fromJson(gson.toJson(scroll), Scroll.class);
     }

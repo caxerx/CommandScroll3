@@ -20,8 +20,12 @@ public class VariableManager {
         return instance;
     }
 
-    public String put(@NonNull String key,@NonNull String value) {
+    public String put(@NonNull String key, @NonNull String value) {
         return variableMap.put(key, value);
+    }
+
+    public void remove(@NonNull String key) {
+        variableMap.remove(key);
     }
 
     public boolean contains(@NonNull String variable) {
@@ -30,6 +34,10 @@ public class VariableManager {
 
     public String get(@NonNull String variable) {
         return variableMap.get(variable);
+    }
+
+    public HashMap<String, String> getVariableMap() {
+        return variableMap;
     }
 
     public List<String> searchVariable(@NonNull String keyword) {

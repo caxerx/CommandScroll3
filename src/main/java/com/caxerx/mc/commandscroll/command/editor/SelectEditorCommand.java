@@ -15,6 +15,7 @@ public class SelectEditorCommand extends CommandNode {
 
     public SelectEditorCommand() {
         super("select", "commandscroll.edit");
+        addAlias("sel");
         scrollManager = ScrollManager.getInstance();
     }
 
@@ -23,8 +24,8 @@ public class SelectEditorCommand extends CommandNode {
         if (args.size() == 0) {
             throw new CommandArgumentException("scroll name");
         }
-        Scroll scroll = ScrollManager.getInstance().getScroll(args.get(0));
-        CommandSelectManager.getInstance().selectScroll(sender, scroll);
+
+        Scroll scroll = CommandSelectManager.getInstance().selectScroll(sender, args.get(0));
         sender.sendMessage("selected scroll " + scroll.getName());
         return true;
     }

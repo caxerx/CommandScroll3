@@ -2,6 +2,7 @@ package com.caxerx.mc.commandscroll.command;
 
 import com.google.common.collect.Lists;
 import lombok.NonNull;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -28,6 +29,10 @@ public class CommandHandler implements CommandExecutor {
             sender.sendMessage("perm: " + e.getMessage());
         } catch (CommandArgumentException e) {
             sender.sendMessage("aug: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            sender.sendMessage(ChatColor.RED + "Error occur, send this to plugin developer");
+            sender.sendMessage(ChatColor.RED + e.toString());
         }
         return false;
     }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NonNull;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -17,6 +18,7 @@ public class Scroll implements Cloneable {
 
     public Scroll(@NonNull String name) {
         this.name = name;
+        commands = new ArrayList<>();
     }
 
     public Scroll(@NonNull String name, @NonNull List<ExecutableCommand> commands) {

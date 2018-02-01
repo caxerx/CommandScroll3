@@ -9,3 +9,5 @@ commands:
     aliases: ['cse']
   commandscrollvariable:
     aliases: ['csvar']
+  commandscrolllog:
+    aliases: ['cslog']
