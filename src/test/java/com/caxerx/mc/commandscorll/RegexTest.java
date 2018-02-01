@@ -1,12 +1,10 @@
 package com.caxerx.mc.commandscorll;
 
 import com.caxerx.mc.commandscroll.placeholder.PlaceholderParser;
-import com.caxerx.mc.commandscroll.Registrable;
 import com.caxerx.mc.commandscroll.placeholder.PlayerFunctionPlaceholder;
 import com.caxerx.mc.commandscroll.placeholder.VariableManager;
 import com.caxerx.mc.commandscroll.placeholder.VariablePlaceholder;
 import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Player;
 import org.junit.Test;
 
 import java.sql.Timestamp;
@@ -25,7 +23,7 @@ public class RegexTest {
         varm.put("victim", "SlenderDan");
         cps.registerPlaceholder(new VariablePlaceholder());
 
-        System.out.println(cps.parse("/tp <var:victim> <name>", null));
+        System.out.println(cps.parse("/tp <var:victim> <name>", new FakePlayer()));
     }
 
 

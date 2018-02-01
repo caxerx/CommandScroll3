@@ -1,6 +1,11 @@
 package com.caxerx.mc.commandscorll;
 
-import com.caxerx.mc.commandscroll.log.*;
+import com.caxerx.mc.commandscroll.command.display.TimeDisplayConfig;
+import com.caxerx.mc.commandscroll.logging.query.QueryResult;
+import com.caxerx.mc.commandscroll.logging.query.condition.ConditionParser;
+import com.caxerx.mc.commandscroll.logging.query.condition.EqualDatabaseCondition;
+import com.caxerx.mc.commandscroll.logging.query.condition.RangeDatabaseCondition;
+import com.caxerx.mc.commandscroll.logging.query.condition.TimeDatabaseCondition;
 import org.junit.Test;
 
 public class CommandTest {
@@ -15,16 +20,12 @@ public class CommandTest {
         parser.registerCondition(new EqualDatabaseCondition("s", "scroll_name"));
         parser.registerCondition(new EqualDatabaseCondition("p", "player_name"));
         parser.registerCondition(new EqualDatabaseCondition("w", "world"));
-        System.out.println(parser.toSql(commandArgs.split(" "), null));
-        System.out.println(parser.toSql(commandArgs2.split(" "), null));
-        System.out.println(parser.toSql(commandArgs3.split(" "), null));
+        System.out.println(parser.toSql(commandArgs.split(" "), new FakePlayer()));
+        System.out.println(parser.toSql(commandArgs2.split(" "), new FakePlayer()));
+        System.out.println(parser.toSql(commandArgs3.split(" "), new FakePlayer()));
     }
 
     @Test
     public void commandFormat() {
-        QueryResult qta = new QueryResult("caxerx", "jscroll", "mkworld", 0, 0, 0, System.currentTimeMillis());
-        QueryResultBuilder qrb = new QueryResultBuilder(new TimeDisplayConfig("d", "h", "m", "s", "(<time> ago)"));
-        qrb.append(qta).append(qta).append(qta).append(qta).append(qta).append(qta).append(qta);
-        System.out.println(qrb.build().toPlainText());
     }
 }

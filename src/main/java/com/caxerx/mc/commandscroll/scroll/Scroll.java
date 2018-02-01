@@ -1,28 +1,35 @@
 package com.caxerx.mc.commandscroll.scroll;
 
+import com.caxerx.mc.commandscroll.scroll.command.ExecutableCommand;
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NonNull;
 import lombok.Setter;
 
 import java.util.List;
 
 @Data
-public class Scroll {
+public class Scroll implements Cloneable {
     @Setter(AccessLevel.PRIVATE)
     private String name;
     @Setter
-    private List<Command> commands;
+    private List<ExecutableCommand> commands;
 
-    public Scroll(String name) {
+    public Scroll(@NonNull String name) {
         this.name = name;
     }
 
-    public Scroll(String name, List<Command> commands) {
+    public Scroll(@NonNull String name, @NonNull List<ExecutableCommand> commands) {
         this.name = name;
         this.commands = commands;
     }
 
-    public void addCommand(Command cmd) {
+    public void addCommand(@NonNull ExecutableCommand cmd) {
         commands.add(cmd);
+    }
+
+    @Override
+    public Scroll clone() {
+        return ScrollManager.getInstance().cloneScroll(this);
     }
 }

@@ -1,6 +1,7 @@
 package com.caxerx.mc.commandscroll.placeholder;
 
 import com.caxerx.mc.commandscroll.Registrable;
+import lombok.NonNull;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.regex.Pattern;
 public class PlaceholderParser {
     private List<Registrable> registeredPlaceholder = new ArrayList<>();
 
-    public void registerPlaceholder(Registrable placeholder) {
+    public void registerPlaceholder(@NonNull Registrable placeholder) {
         for (Registrable existPlaceholder : registeredPlaceholder) {
             if (placeholder.getId().equals(existPlaceholder.getId())) {
                 return;
@@ -20,7 +21,7 @@ public class PlaceholderParser {
         registeredPlaceholder.add(placeholder);
     }
 
-    public String parse(String cmd, Player player) {
+    public String parse(@NonNull String cmd, @NonNull Player player) {
         Pattern regexMatcher = Pattern.compile("<.+?>");
         Matcher matcher = regexMatcher.matcher(cmd);
         int next = 0;
@@ -34,7 +35,7 @@ public class PlaceholderParser {
         return replacedCmd;
     }
 
-    public String placeholderParse(String preMatchPlaceholder, Player player) {
+    public String placeholderParse(@NonNull String preMatchPlaceholder, @NonNull Player player) {
         for (Registrable placeholder : registeredPlaceholder) {
             if (placeholder.match(preMatchPlaceholder)) {
                 return placeholder.parse(preMatchPlaceholder, player);

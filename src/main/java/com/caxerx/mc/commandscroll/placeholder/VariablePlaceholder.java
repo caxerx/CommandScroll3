@@ -1,6 +1,7 @@
 package com.caxerx.mc.commandscroll.placeholder;
 
 import com.caxerx.mc.commandscroll.Registrable;
+import lombok.NonNull;
 import org.bukkit.entity.Player;
 
 import java.util.regex.Matcher;
@@ -15,14 +16,14 @@ public class VariablePlaceholder implements Registrable {
     }
 
     @Override
-    public String parse(String original, Player player) {
+    public String parse(@NonNull String original, @NonNull Player player) {
         Matcher matcher = varPattern.matcher(original);
         matcher.matches();
         return varManager.get(matcher.group(1));
     }
 
     @Override
-    public boolean match(String original) {
+    public boolean match(@NonNull String original) {
         Matcher matcher = varPattern.matcher(original);
         return matcher.matches() && varManager.contains(matcher.group(1));
     }

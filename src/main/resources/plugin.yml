@@ -1,0 +1,11 @@
+name: CommandScroll
+version: 3.0
+main: com.caxerx.mc.commandscroll.CommandScroll
+depend: ['Vault']
+commands:
+  commandscroll:
+    aliases: ['cs']
+  commandscrolleditor:
+    aliases: ['cse']
+  commandscrollvariable:
+    aliases: ['csvar']

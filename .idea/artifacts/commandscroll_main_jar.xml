@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="commandscroll_main:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/commandscroll_main_jar</output-path>
+    <root id="archive" name="commandscroll_main.jar">
+      <element id="module-output" name="commandscroll_main" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.xerial/sqlite-jdbc/3.21.0.1/81a0bcda2f100dc91dc402554f60ed2f696cded5/sqlite-jdbc-3.21.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zaxxer/HikariCP/2.7.6/7930c6554acb1adcc7865ec86a27e49337c6e161/HikariCP-2.7.6.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
+    </root>
+  </artifact>
+</component>
