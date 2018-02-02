@@ -1,6 +1,7 @@
 package com.caxerx.mc.commandscroll.command.editor;
 
 import com.caxerx.mc.commandscroll.command.CommandNode;
+import com.caxerx.mc.commandscroll.command.display.HelpOutputBuilder;
 import com.caxerx.mc.commandscroll.command.editor.cmd.DefaultCommandEditorCommand;
 import org.bukkit.command.CommandSender;
 
@@ -8,8 +9,8 @@ import java.util.List;
 
 public class DefaultEditorCommand extends CommandNode {
     public DefaultEditorCommand() {
-        super("commandscrolleditor", "commandscroll.edit");
-        addAlias("cse");
+        super("cse", "commandscroll.edit", "Main command of Command Scroll Editor", null);
+        addAlias("commandscrolleditor");
         addSub(new SelectEditorCommand());
         addSub(new CreateEditorCommand());
         addSub(new InfoEditorCommand());
@@ -19,7 +20,11 @@ public class DefaultEditorCommand extends CommandNode {
 
     @Override
     public boolean executeCommand(CommandSender sender, List<String> args) {
-        sender.sendMessage("default edit command");
+        HelpOutputBuilder builder = new HelpOutputBuilder(this);
+        getSubCommands().forEach(sub -> {
+            builder.append(sub);
+        });
+        sender.spigot().sendMessage(builder.build());
         return true;
     }
 

@@ -11,7 +11,7 @@ public class RemoveVariableCommand extends CommandNode {
     private VariableManager variableManager;
 
     public RemoveVariableCommand() {
-        super("remove", "commandscroll.variable");
+        super("remove", "commandscroll.variable", "Remove a variable", "<variable>");
         variableManager = VariableManager.getInstance();
     }
 

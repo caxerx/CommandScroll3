@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CreateEditorCommand extends CommandNode {
     public CreateEditorCommand() {
-        super("create", "commandscroll.edit");
+        super("create", "commandscroll.edit", "Create and select a scroll", "<scroll_name>");
         addAlias("add");
     }
 

@@ -10,7 +10,8 @@ public class ListVariableCommand extends CommandNode {
     VariableManager variableManager;
 
     public ListVariableCommand() {
-        super("list", "commandscroll.variable");
+        super("ls", "commandscroll.variable", "List all variable", null);
+        addAlias("list");
         variableManager = VariableManager.getInstance();
     }
 

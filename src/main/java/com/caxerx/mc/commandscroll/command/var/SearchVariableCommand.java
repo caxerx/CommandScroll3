@@ -11,7 +11,7 @@ public class SearchVariableCommand extends CommandNode {
     private VariableManager variableManager;
 
     public SearchVariableCommand() {
-        super("search", "commandscroll.variable");
+        super("search", "commandscroll.variable", "Search a variable with similar name", "<keyword>");
         variableManager = VariableManager.getInstance();
     }
 

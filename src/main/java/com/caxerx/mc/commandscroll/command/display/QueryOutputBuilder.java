@@ -23,11 +23,11 @@ public class QueryOutputBuilder {
     public QueryOutputBuilder append(@NonNull QueryResult res) {
         //caxerx used scroll_jj in world:x,y,z (10h ago)
         //(1337h ago) (20s ago) (3m ago)
-        layout.append(res.getPlayerName()).color(ChatColor.GOLD).append(" used ").color(ChatColor.RESET).append(res.getScrollName())
-                .color(ChatColor.GOLD).append(" in ").color(ChatColor.RESET).append(res.getWorld()).append(":")
+        layout.append(res.getPlayerName()).color(ChatColor.GOLD).append(" used ").reset().append(res.getScrollName())
+                .color(ChatColor.GOLD).append(" in ").reset().append(res.getWorld()).append(":")
                 .append(String.valueOf(res.getX())).append(",").append(String.valueOf(res.getY()))
                 .append(",").append(String.valueOf(res.getZ()))
-                .append(" ").append(timeDisplayConfig.getFormattedTimeAgo(System.currentTimeMillis() - res.getTime())).color(ChatColor.GRAY).italic(true).append("\n");
+                .append(" ").append(timeDisplayConfig.getFormattedTimeAgo(System.currentTimeMillis() - res.getTime())).color(ChatColor.GRAY).italic(true).append("\n").reset();
         return this;
     }
 

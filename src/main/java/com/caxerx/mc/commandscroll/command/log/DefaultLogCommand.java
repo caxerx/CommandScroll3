@@ -15,7 +15,9 @@ public class DefaultLogCommand extends CommandNode {
     DatabaseController databaseController;
 
     public DefaultLogCommand() {
-        super("cslog", "commandscroll.log");
+        super("csl", "commandscroll.log", "Main Log Command", null);
+        addAlias("cslog");
+        addAlias("commandscrolllog");
         databaseController = DatabaseController.getInstance();
     }
 

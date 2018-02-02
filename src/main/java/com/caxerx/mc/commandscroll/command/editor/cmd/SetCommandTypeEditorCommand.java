@@ -2,7 +2,6 @@ package com.caxerx.mc.commandscroll.command.editor.cmd;
 
 import com.caxerx.mc.commandscroll.command.CommandNode;
 import com.caxerx.mc.commandscroll.command.CommandSelectManager;
-import com.caxerx.mc.commandscroll.scroll.ScrollManager;
 import com.caxerx.mc.commandscroll.scroll.command.CommandBuilder;
 import org.bukkit.command.CommandSender;
 
@@ -12,7 +11,8 @@ public class SetCommandTypeEditorCommand extends CommandNode {
     private CommandSelectManager commandSelectManager;
 
     public SetCommandTypeEditorCommand() {
-        super("set", "commandscroll.edit");
+        super("st", "commandscroll.edit", "Set the command type of a scroll", "<type>");
+        addAlias("settype");
         commandSelectManager = CommandSelectManager.getInstance();
 
     }

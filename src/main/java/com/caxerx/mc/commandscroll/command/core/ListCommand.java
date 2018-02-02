@@ -10,7 +10,7 @@ public class ListCommand extends CommandNode {
     private ScrollManager scrollManager;
 
     public ListCommand() {
-        super("list", "commandscroll.list");
+        super("list", "commandscroll.list", "List all of the scroll", null);
         scrollManager = ScrollManager.getInstance();
         addAlias("ls");
     }

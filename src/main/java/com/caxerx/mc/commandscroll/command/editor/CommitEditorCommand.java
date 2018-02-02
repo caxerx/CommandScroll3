@@ -13,8 +13,8 @@ public class CommitEditorCommand extends CommandNode {
     private ScrollManager scrollManager;
 
     public CommitEditorCommand() {
-        super("commit", "commandscroll.edit");
-        addAlias("apply");
+        super("apply", "commandscroll.edit", "Apply the edit of the scroll", null);
+        addAlias("commit");
         commandSelectManager = CommandSelectManager.getInstance();
         scrollManager = ScrollManager.getInstance();
     }

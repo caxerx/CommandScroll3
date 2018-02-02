@@ -11,7 +11,7 @@ public class SetVariableCommand extends CommandNode {
     VariableManager variableManager;
 
     public SetVariableCommand() {
-        super("set", "commandscroll.variable");
+        super("set", "commandscroll.variable","Set the value of a variable","<variable>");
         variableManager = VariableManager.getInstance();
     }
 

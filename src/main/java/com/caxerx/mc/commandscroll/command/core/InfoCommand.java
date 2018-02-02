@@ -2,10 +2,8 @@ package com.caxerx.mc.commandscroll.command.core;
 
 import com.caxerx.mc.commandscroll.command.CommandArgumentException;
 import com.caxerx.mc.commandscroll.command.CommandNode;
-import com.caxerx.mc.commandscroll.command.CommandSelectManager;
 import com.caxerx.mc.commandscroll.scroll.Scroll;
 import com.caxerx.mc.commandscroll.scroll.ScrollManager;
-import com.caxerx.mc.commandscroll.scroll.command.CommandType;
 import com.caxerx.mc.commandscroll.scroll.command.PermissionCommand;
 import org.bukkit.command.CommandSender;
 
@@ -13,7 +11,7 @@ import java.util.List;
 
 public class InfoCommand extends CommandNode {
     public InfoCommand() {
-        super("info", "commandscroll.info");
+        super("info", "commandscroll.info", "Check the info of a scroll", "<scroll_name>");
     }
 
     @Override

@@ -12,8 +12,8 @@ public class SelectCommandEditorCommand extends CommandNode {
     private CommandSelectManager commandSelectManager;
 
     public SelectCommandEditorCommand() {
-        super("select", "commandscroll.edit");
-        addAlias("sel");
+        super("sel", "commandscroll.edit", "Select a command of the selected scroll", "<command_number>");
+        addAlias("select");
         commandSelectManager = CommandSelectManager.getInstance();
     }
 

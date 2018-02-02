@@ -10,6 +10,11 @@ import java.util.List;
 public abstract class CommandNode {
 
     @Getter
+    private String description;
+    @Getter
+    private String usage;
+
+    @Getter
     private ArrayList<CommandNode> subCommands = new ArrayList<>();
 
     @Getter
@@ -18,9 +23,11 @@ public abstract class CommandNode {
     @Getter
     private String permission;
 
-    public CommandNode(@NonNull String command, String permission) {
+    public CommandNode(@NonNull String command, String permission, @NonNull String description, String usage) {
         this.alias.add(command);
         this.permission = permission;
+        this.description = description;
+        this.usage = usage;
     }
 
     public void addAlias(@NonNull String alias) {
@@ -33,7 +40,7 @@ public abstract class CommandNode {
 
     public abstract boolean executeCommand(@NonNull CommandSender sender, @NonNull List<String> args);
 
-    public abstract List<String> executeTabCompletion(@NonNull CommandSender sender,@NonNull List<String> args);
+    public abstract List<String> executeTabCompletion(@NonNull CommandSender sender, @NonNull List<String> args);
 
     public boolean invokeCommand(@NonNull CommandSender sender, @NonNull List<String> args) {
         if (args == null || args.size() == 0) {

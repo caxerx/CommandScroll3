@@ -8,6 +8,6 @@ commands:
   commandscrolleditor:
     aliases: ['cse']
   commandscrollvariable:
-    aliases: ['csvar']
+    aliases: ['csvar','csv']
   commandscrolllog:
-    aliases: ['cslog']
+    aliases: ['cslog','csl']

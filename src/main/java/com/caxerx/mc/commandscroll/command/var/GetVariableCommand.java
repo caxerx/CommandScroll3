@@ -11,7 +11,7 @@ public class GetVariableCommand extends CommandNode {
     private VariableManager variableManager;
 
     public GetVariableCommand() {
-        super("get", "commandscroll.variable");
+        super("get", "commandscroll.variable", "Get the value of a variable", "<variable>");
         variableManager = VariableManager.getInstance();
     }
 
