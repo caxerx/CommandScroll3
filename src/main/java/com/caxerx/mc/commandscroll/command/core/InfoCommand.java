@@ -28,9 +28,7 @@ public class InfoCommand extends CommandNode {
         scroll.getCommands().forEach(cmd -> {
             sender.sendMessage(cmd.getType() + " " + cmd.getCommand());
             if (cmd instanceof PermissionCommand) {
-                ((PermissionCommand) cmd).getPermission().forEach(pem -> {
-                    sender.sendMessage(" -" + pem);
-                });
+                ((PermissionCommand) cmd).getPermission().forEach(pem -> sender.sendMessage(" -" + pem));
             }
         });
         return true;

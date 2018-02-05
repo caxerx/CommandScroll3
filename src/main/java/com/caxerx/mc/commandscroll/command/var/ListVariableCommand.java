@@ -17,9 +17,7 @@ public class ListVariableCommand extends CommandNode {
 
     @Override
     public boolean executeCommand(CommandSender sender, List<String> args) {
-        variableManager.getVariableMap().forEach((key, val) -> {
-            sender.sendMessage(key + ": " + val);
-        });
+        variableManager.getVariableMap().forEach((key, val) -> sender.sendMessage(key + ": " + val));
         return true;
     }
 

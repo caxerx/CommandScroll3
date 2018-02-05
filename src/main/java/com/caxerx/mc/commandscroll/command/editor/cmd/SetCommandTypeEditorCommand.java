@@ -6,7 +6,6 @@ import com.caxerx.mc.commandscroll.scroll.command.CommandBuilder;
 import com.google.common.collect.Lists;
 import org.bukkit.command.CommandSender;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SetCommandTypeEditorCommand extends CommandNode {

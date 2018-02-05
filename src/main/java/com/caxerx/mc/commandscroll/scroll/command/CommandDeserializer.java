@@ -18,9 +18,7 @@ public class CommandDeserializer implements JsonDeserializer<ExecutableCommand> 
                 break;
             case "PERMISSION":
                 ArrayList<String> permission = new ArrayList<>();
-                jsonObject.get("permission").getAsJsonArray().forEach(jsonElement -> {
-                    permission.add(jsonElement.getAsString());
-                });
+                jsonObject.get("permission").getAsJsonArray().forEach(jsonElement -> permission.add(jsonElement.getAsString()));
                 commandBuilder.permission().setPermission(permission);
                 break;
             case "ADMIN":

@@ -29,9 +29,7 @@ public class LogQueryCommand extends CommandNode {
         String sql = ConditionParser.getInstance().toSql(args, player);
         List<QueryResult> res = databaseController.queryLog(sql);
         QueryOutputBuilder qob = new QueryOutputBuilder(new TimeDisplayConfig("d", "h", "m", "s", "(<time> ago)"));
-        res.forEach(qr -> {
-            qob.append(qr);
-        });
+        res.forEach(qob::append);
         player.spigot().sendMessage(qob.build());
         return true;
     }

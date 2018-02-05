@@ -1,6 +1,5 @@
 package com.caxerx.mc.commandscroll.scroll.command;
 
-import lombok.Data;
 import lombok.NonNull;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

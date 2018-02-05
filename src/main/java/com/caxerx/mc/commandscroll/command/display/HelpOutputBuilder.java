@@ -12,12 +12,13 @@ public class HelpOutputBuilder {
     private String mainCommand;
 
     public HelpOutputBuilder(@NonNull CommandNode mainCommandNode) {
-        mainCommand = mainCommandNode.getAlias().get(0);
+        StringBuilder mainCommandBuilder = new StringBuilder(mainCommandNode.getAlias().get(0));
         CommandNode topNode = mainCommandNode;
         while (topNode.getParent() != null) {
             topNode = topNode.getParent();
-            mainCommand = topNode.getAlias().get(0) + " " + mainCommand;
+            mainCommandBuilder.insert(0, topNode.getAlias().get(0) + " ");
         }
+        mainCommand = mainCommandBuilder.toString();
         layout = new ComponentBuilder("");
         layout.append("===== ").append("CommandScroll Help").color(ChatColor.AQUA).append(" =====").color(ChatColor.RESET).append("\n");
     }

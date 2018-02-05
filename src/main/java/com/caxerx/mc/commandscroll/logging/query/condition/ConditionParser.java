@@ -2,7 +2,6 @@ package com.caxerx.mc.commandscroll.logging.query.condition;
 
 import com.caxerx.mc.commandscroll.Registrable;
 import lombok.NonNull;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -38,8 +37,8 @@ public class ConditionParser {
     public String toSql(@NonNull List<String> conditions, @NonNull Player player) {
         StringBuilder stringBuilder = new StringBuilder("SELECT * FROM UsageLog");
         List<String> conditionList = new ArrayList<>();
-        for (int i = 0; i < conditions.size(); i++) {
-            String parsed = parse(conditions.get(i), player);
+        for (String condition : conditions) {
+            String parsed = parse(condition, player);
             if (!parsed.equals("")) {
                 conditionList.add(parsed);
             }

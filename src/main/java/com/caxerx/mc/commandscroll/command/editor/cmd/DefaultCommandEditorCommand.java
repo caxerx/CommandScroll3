@@ -2,10 +2,6 @@ package com.caxerx.mc.commandscroll.command.editor.cmd;
 
 import com.caxerx.mc.commandscroll.command.CommandNode;
 import com.caxerx.mc.commandscroll.command.DefaultCommand;
-import com.caxerx.mc.commandscroll.command.display.HelpOutputBuilder;
-import org.bukkit.command.CommandSender;
-
-import java.util.List;
 
 public class DefaultCommandEditorCommand extends DefaultCommand {
 

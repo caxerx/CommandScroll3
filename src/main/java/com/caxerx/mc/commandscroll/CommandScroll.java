@@ -11,7 +11,6 @@ import com.caxerx.mc.commandscroll.logging.query.condition.ConditionParser;
 import com.caxerx.mc.commandscroll.placeholder.VariableManager;
 import com.caxerx.mc.commandscroll.scroll.ScrollManager;
 import net.milkbowl.vault.permission.Permission;
-import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 

@@ -20,9 +20,7 @@ public class SearchVariableCommand extends CommandNode {
         if (args.size() == 0) {
             throw new CommandArgumentException("keyword");
         }
-        variableManager.searchVariable(args.get(0)).forEach(res -> {
-            sender.sendMessage(res + ": " + variableManager.get(res));
-        });
+        variableManager.searchVariable(args.get(0)).forEach(res -> sender.sendMessage(res + ": " + variableManager.get(res)));
         return true;
     }
 
