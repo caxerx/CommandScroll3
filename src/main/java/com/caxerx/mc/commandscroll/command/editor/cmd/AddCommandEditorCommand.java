@@ -13,8 +13,8 @@ import java.util.List;
 public class AddCommandEditorCommand extends CommandNode {
     private CommandSelectManager commandSelectManager;
 
-    public AddCommandEditorCommand() {
-        super("ac", "commandscroll.edit", "Add a command to selected scroll", "<command>");
+    public AddCommandEditorCommand(CommandNode parent) {
+        super(parent, "ac", "commandscroll.edit", "Add a command to selected scroll", "<command>");
         addAlias("add");
         commandSelectManager = CommandSelectManager.getInstance();
     }

@@ -13,8 +13,8 @@ import java.util.List;
 public class SelectEditorCommand extends CommandNode {
     private ScrollManager scrollManager;
 
-    public SelectEditorCommand() {
-        super("sel", "commandscroll.edit", "Select a exist scroll", "<scroll_name>");
+    public SelectEditorCommand(CommandNode parent) {
+        super(parent, "sel", "commandscroll.edit", "Select a exist scroll", "<scroll_name>");
         addAlias("select");
         scrollManager = ScrollManager.getInstance();
     }

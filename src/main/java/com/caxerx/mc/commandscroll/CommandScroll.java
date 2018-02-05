@@ -2,7 +2,7 @@ package com.caxerx.mc.commandscroll;
 
 import com.caxerx.mc.commandscroll.command.CommandHandler;
 import com.caxerx.mc.commandscroll.command.CommandSelectManager;
-import com.caxerx.mc.commandscroll.command.core.DefaultCommand;
+import com.caxerx.mc.commandscroll.command.core.DefaultCoreCommand;
 import com.caxerx.mc.commandscroll.command.editor.DefaultEditorCommand;
 import com.caxerx.mc.commandscroll.command.log.DefaultLogCommand;
 import com.caxerx.mc.commandscroll.command.var.DefaultVariableCommand;
@@ -44,7 +44,7 @@ public class CommandScroll extends JavaPlugin {
         getCommand("commandscrollvariable").setExecutor(cmdexec);
         getCommand("commandscrolleditor").setExecutor(cmdexec);
         getCommand("commandscrolllog").setExecutor(cmdexec);
-        cmdexec.registerCommand(new DefaultCommand());
+        cmdexec.registerCommand(new DefaultCoreCommand());
         cmdexec.registerCommand(new DefaultEditorCommand());
         cmdexec.registerCommand(new DefaultVariableCommand());
         cmdexec.registerCommand(new DefaultLogCommand());

@@ -9,8 +9,8 @@ import java.util.List;
 public class ListVariableCommand extends CommandNode {
     VariableManager variableManager;
 
-    public ListVariableCommand() {
-        super("ls", "commandscroll.variable", "List all variable", null);
+    public ListVariableCommand(CommandNode parent) {
+        super(parent, "ls", "commandscroll.variable", "List all variable", null);
         addAlias("list");
         variableManager = VariableManager.getInstance();
     }

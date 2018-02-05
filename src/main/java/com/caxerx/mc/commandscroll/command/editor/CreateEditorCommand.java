@@ -10,8 +10,8 @@ import org.bukkit.command.CommandSender;
 import java.util.List;
 
 public class CreateEditorCommand extends CommandNode {
-    public CreateEditorCommand() {
-        super("create", "commandscroll.edit", "Create and select a scroll", "<scroll_name>");
+    public CreateEditorCommand(CommandNode parent) {
+        super(parent,"create", "commandscroll.edit", "Create and select a scroll", "<scroll_name>");
         addAlias("add");
     }
 

@@ -10,8 +10,8 @@ import java.util.List;
 public class GetVariableCommand extends CommandNode {
     private VariableManager variableManager;
 
-    public GetVariableCommand() {
-        super("get", "commandscroll.variable", "Get the value of a variable", "<variable>");
+    public GetVariableCommand(CommandNode parent) {
+        super(parent, "get", "commandscroll.variable", "Get the value of a variable", "<variable>");
         variableManager = VariableManager.getInstance();
     }
 

@@ -13,8 +13,8 @@ public class InfoEditorCommand extends CommandNode {
     private ScrollManager scrollManager;
     private CommandSelectManager commandSelectManager;
 
-    public InfoEditorCommand() {
-        super("info", "commandscroll.edit", "Show the info of selected scroll", null);
+    public InfoEditorCommand(CommandNode parent) {
+        super(parent, "info", "commandscroll.edit", "Show the info of selected scroll", null);
         scrollManager = ScrollManager.getInstance();
         commandSelectManager = CommandSelectManager.getInstance();
     }

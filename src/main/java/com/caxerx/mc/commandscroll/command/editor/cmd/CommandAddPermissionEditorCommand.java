@@ -11,8 +11,8 @@ import java.util.List;
 public class CommandAddPermissionEditorCommand extends CommandNode {
     private CommandSelectManager commandSelectManager;
 
-    public CommandAddPermissionEditorCommand() {
-        super("ap", "commandscroll.edit", "Add a permission to selected command", "<permission>");
+    public CommandAddPermissionEditorCommand(CommandNode parent) {
+        super(parent, "ap", "commandscroll.edit", "Add a permission to selected command", "<permission>");
         commandSelectManager = CommandSelectManager.getInstance();
         addAlias("addpermission");
     }

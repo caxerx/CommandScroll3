@@ -11,8 +11,8 @@ import java.util.List;
 public class SelectCommandEditorCommand extends CommandNode {
     private CommandSelectManager commandSelectManager;
 
-    public SelectCommandEditorCommand() {
-        super("sel", "commandscroll.edit", "Select a command of the selected scroll", "<command_number>");
+    public SelectCommandEditorCommand(CommandNode parent) {
+        super(parent,"sel", "commandscroll.edit", "Select a command of the selected scroll", "<command_number>");
         addAlias("select");
         commandSelectManager = CommandSelectManager.getInstance();
     }

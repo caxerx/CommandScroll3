@@ -10,8 +10,8 @@ import org.bukkit.command.CommandSender;
 import java.util.List;
 
 public class InfoCommand extends CommandNode {
-    public InfoCommand() {
-        super("info", "commandscroll.info", "Check the info of a scroll", "<scroll_name>");
+    public InfoCommand(CommandNode parent) {
+        super(parent, "info", "commandscroll.info", "Check the info of a scroll", "<scroll_name>");
     }
 
     @Override

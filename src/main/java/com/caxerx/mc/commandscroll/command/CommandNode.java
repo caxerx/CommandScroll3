@@ -23,7 +23,11 @@ public abstract class CommandNode {
     @Getter
     private String permission;
 
-    public CommandNode(@NonNull String command, String permission, @NonNull String description, String usage) {
+    @Getter
+    private CommandNode parent;
+
+    public CommandNode(CommandNode parent, @NonNull String command, String permission, @NonNull String description, String usage) {
+        this.parent = parent;
         this.alias.add(command);
         this.permission = permission;
         this.description = description;

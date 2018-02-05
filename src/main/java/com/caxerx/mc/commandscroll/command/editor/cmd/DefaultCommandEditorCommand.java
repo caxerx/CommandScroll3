@@ -1,34 +1,20 @@
 package com.caxerx.mc.commandscroll.command.editor.cmd;
 
 import com.caxerx.mc.commandscroll.command.CommandNode;
+import com.caxerx.mc.commandscroll.command.DefaultCommand;
 import com.caxerx.mc.commandscroll.command.display.HelpOutputBuilder;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-public class DefaultCommandEditorCommand extends CommandNode {
+public class DefaultCommandEditorCommand extends DefaultCommand {
 
-    public DefaultCommandEditorCommand() {
-        super("cse cmd", "commandscroll.edit", "Editing the commands in scroll", null);
-        addAlias("cmd");
-        addSub(new SelectCommandEditorCommand());
-        addSub(new SetCommandTypeEditorCommand());
-        addSub(new CommandAddPermissionEditorCommand());
-        addSub(new AddCommandEditorCommand());
+    public DefaultCommandEditorCommand(CommandNode parent) {
+        super(parent, "cmd", "commandscroll.edit", "Editing the commands in scroll", null);
+        addSub(new SelectCommandEditorCommand(this));
+        addSub(new SetCommandTypeEditorCommand(this));
+        addSub(new CommandAddPermissionEditorCommand(this));
+        addSub(new AddCommandEditorCommand(this));
     }
 
-    @Override
-    public boolean executeCommand(CommandSender sender, List<String> args) {
-        HelpOutputBuilder builder = new HelpOutputBuilder(this);
-        getSubCommands().forEach(sub -> {
-            builder.append(sub);
-        });
-        sender.spigot().sendMessage(builder.build());
-        return true;
-    }
-
-    @Override
-    public List<String> executeTabCompletion(CommandSender sender, List<String> args) {
-        return null;
-    }
 }

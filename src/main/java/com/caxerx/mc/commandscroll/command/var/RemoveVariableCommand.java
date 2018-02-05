@@ -10,8 +10,8 @@ import java.util.List;
 public class RemoveVariableCommand extends CommandNode {
     private VariableManager variableManager;
 
-    public RemoveVariableCommand() {
-        super("remove", "commandscroll.variable", "Remove a variable", "<variable>");
+    public RemoveVariableCommand(CommandNode parent) {
+        super(parent, "remove", "commandscroll.variable", "Remove a variable", "<variable>");
         variableManager = VariableManager.getInstance();
     }
 

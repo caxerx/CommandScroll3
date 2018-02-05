@@ -9,10 +9,15 @@ import net.md_5.bungee.api.chat.TextComponent;
 
 public class HelpOutputBuilder {
     private ComponentBuilder layout;
-    private CommandNode mainCommand;
+    private String mainCommand;
 
-    public HelpOutputBuilder(@NonNull CommandNode mainCommand) {
-        this.mainCommand = mainCommand;
+    public HelpOutputBuilder(@NonNull CommandNode mainCommandNode) {
+        mainCommand = mainCommandNode.getAlias().get(0);
+        CommandNode topNode = mainCommandNode;
+        while (topNode.getParent() != null) {
+            topNode = topNode.getParent();
+            mainCommand = topNode.getAlias().get(0) + " " + mainCommand;
+        }
         layout = new ComponentBuilder("");
         layout.append("===== ").append("CommandScroll Help").color(ChatColor.AQUA).append(" =====").color(ChatColor.RESET).append("\n");
     }
@@ -20,7 +25,7 @@ public class HelpOutputBuilder {
     public HelpOutputBuilder append(@NonNull CommandNode res) {
         // /cs list - description of jj
         // /cs info <scroll_name> description of jj
-        String cmd = "/" + mainCommand.getAlias().get(0) + " ";
+        String cmd = "/" + mainCommand + " ";
         for (String ali : res.getAlias()) {
             if (ali.contains(" ")) {
                 continue;

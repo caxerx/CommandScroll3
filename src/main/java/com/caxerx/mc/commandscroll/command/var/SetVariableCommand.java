@@ -10,8 +10,8 @@ import java.util.List;
 public class SetVariableCommand extends CommandNode {
     VariableManager variableManager;
 
-    public SetVariableCommand() {
-        super("set", "commandscroll.variable","Set the value of a variable","<variable>");
+    public SetVariableCommand(CommandNode parent) {
+        super(parent, "set", "commandscroll.variable", "Set the value of a variable", "<variable>");
         variableManager = VariableManager.getInstance();
     }
 

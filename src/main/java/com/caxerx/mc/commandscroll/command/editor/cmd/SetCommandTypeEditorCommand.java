@@ -10,11 +10,10 @@ import java.util.List;
 public class SetCommandTypeEditorCommand extends CommandNode {
     private CommandSelectManager commandSelectManager;
 
-    public SetCommandTypeEditorCommand() {
-        super("st", "commandscroll.edit", "Set the command type of a scroll", "<type>");
+    public SetCommandTypeEditorCommand(CommandNode parent) {
+        super(parent, "st", "commandscroll.edit", "Set the command type of a scroll", "<type>");
         addAlias("settype");
         commandSelectManager = CommandSelectManager.getInstance();
-
     }
 
     @Override

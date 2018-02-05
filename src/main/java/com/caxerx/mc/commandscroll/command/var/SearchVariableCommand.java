@@ -10,8 +10,8 @@ import java.util.List;
 public class SearchVariableCommand extends CommandNode {
     private VariableManager variableManager;
 
-    public SearchVariableCommand() {
-        super("search", "commandscroll.variable", "Search a variable with similar name", "<keyword>");
+    public SearchVariableCommand(CommandNode parent) {
+        super(parent, "search", "commandscroll.variable", "Search a variable with similar name", "<keyword>");
         variableManager = VariableManager.getInstance();
     }
 
