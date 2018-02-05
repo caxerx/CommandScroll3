@@ -3,8 +3,10 @@ package com.caxerx.mc.commandscroll.command.editor.cmd;
 import com.caxerx.mc.commandscroll.command.CommandNode;
 import com.caxerx.mc.commandscroll.command.CommandSelectManager;
 import com.caxerx.mc.commandscroll.scroll.command.CommandBuilder;
+import com.google.common.collect.Lists;
 import org.bukkit.command.CommandSender;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SetCommandTypeEditorCommand extends CommandNode {
@@ -49,6 +51,6 @@ public class SetCommandTypeEditorCommand extends CommandNode {
 
     @Override
     public List<String> executeTabCompletion(CommandSender sender, List<String> args) {
-        return null;
+        return Lists.newArrayList("player", "admin", "console", "permission");
     }
 }

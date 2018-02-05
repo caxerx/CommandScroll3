@@ -35,7 +35,17 @@ public abstract class CommandNode {
     }
 
     public void addAlias(@NonNull String alias) {
-        this.alias.add(alias);
+        if (!alias.contains(alias)) {
+            this.alias.add(alias);
+        }
+    }
+
+    public void addAllAliases(@NonNull List<String> aliases) {
+        aliases.forEach(ali -> {
+            if (!alias.contains(ali)) {
+                alias.add(ali);
+            }
+        });
     }
 
     public void addSub(@NonNull CommandNode c) {

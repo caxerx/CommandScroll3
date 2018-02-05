@@ -11,6 +11,7 @@ import com.caxerx.mc.commandscroll.logging.query.condition.ConditionParser;
 import com.caxerx.mc.commandscroll.placeholder.VariableManager;
 import com.caxerx.mc.commandscroll.scroll.ScrollManager;
 import net.milkbowl.vault.permission.Permission;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -39,14 +40,16 @@ public class CommandScroll extends JavaPlugin {
         new VariableManager();
         new DatabaseController(new File(getDataFolder() + File.separator + "log.db"));
         new ConditionParser();
-        CommandHandler cmdexec = new CommandHandler();
-        getCommand("commandscroll").setExecutor(cmdexec);
-        getCommand("commandscrollvariable").setExecutor(cmdexec);
-        getCommand("commandscrolleditor").setExecutor(cmdexec);
-        getCommand("commandscrolllog").setExecutor(cmdexec);
-        cmdexec.registerCommand(new DefaultCoreCommand());
-        cmdexec.registerCommand(new DefaultEditorCommand());
-        cmdexec.registerCommand(new DefaultVariableCommand());
-        cmdexec.registerCommand(new DefaultLogCommand());
+        CommandHandler cmdexec = new CommandHandler(this);
+
+        DefaultCoreCommand corenode = new DefaultCoreCommand();
+        DefaultEditorCommand editornode = new DefaultEditorCommand();
+        DefaultVariableCommand varnode = new DefaultVariableCommand();
+        DefaultLogCommand lognode = new DefaultLogCommand();
+
+        cmdexec.registerCommand("commandscroll", corenode);
+        cmdexec.registerCommand("commandscrolleditor", editornode);
+        cmdexec.registerCommand("commandscrollvariable", varnode);
+        cmdexec.registerCommand("commandscrolllog", lognode);
     }
 }

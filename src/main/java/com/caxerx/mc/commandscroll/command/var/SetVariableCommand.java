@@ -5,6 +5,7 @@ import com.caxerx.mc.commandscroll.command.CommandNode;
 import com.caxerx.mc.commandscroll.placeholder.VariableManager;
 import org.bukkit.command.CommandSender;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SetVariableCommand extends CommandNode {
@@ -27,6 +28,6 @@ public class SetVariableCommand extends CommandNode {
 
     @Override
     public List<String> executeTabCompletion(CommandSender sender, List<String> args) {
-        return null;
+        return new ArrayList<>(variableManager.getVariableMap().keySet());
     }
 }

@@ -6,6 +6,7 @@ import com.caxerx.mc.commandscroll.command.editor.cmd.DefaultCommandEditorComman
 public class DefaultEditorCommand extends DefaultCommand {
     public DefaultEditorCommand() {
         super(null, "cse", "commandscroll.edit", "Main command of Command Scroll Editor", null);
+        addAlias("csed");
         addAlias("commandscrolleditor");
         addSub(new SelectEditorCommand(this));
         addSub(new CreateEditorCommand(this));

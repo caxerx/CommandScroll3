@@ -16,6 +16,7 @@ public class AddCommandEditorCommand extends CommandNode {
     public AddCommandEditorCommand(CommandNode parent) {
         super(parent, "ac", "commandscroll.edit", "Add a command to selected scroll", "<command>");
         addAlias("add");
+        addAlias("addcommand");
         commandSelectManager = CommandSelectManager.getInstance();
     }
 

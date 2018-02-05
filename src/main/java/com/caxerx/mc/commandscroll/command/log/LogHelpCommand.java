@@ -1,15 +1,18 @@
 package com.caxerx.mc.commandscroll.command.log;
 
 import com.caxerx.mc.commandscroll.command.CommandNode;
+import com.google.common.collect.Lists;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ComponentBuilder;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LogHelpCommand extends CommandNode {
     public LogHelpCommand(CommandNode parent) {
-        super(parent,"help", "commandscroll.log", "Check the usage of condition query", null);
+        super(parent, "help", "commandscroll.log", "Check the usage of condition query", null);
         addAlias("h");
         /*
         registerCondition(new EqualDatabaseCondition("w", "world"));

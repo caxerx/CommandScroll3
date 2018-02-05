@@ -7,11 +7,15 @@ import com.caxerx.mc.commandscroll.scroll.ScrollManager;
 import com.caxerx.mc.commandscroll.scroll.command.PermissionCommand;
 import org.bukkit.command.CommandSender;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InfoCommand extends CommandNode {
+    private ScrollManager scrollManager;
+
     public InfoCommand(CommandNode parent) {
         super(parent, "info", "commandscroll.info", "Check the info of a scroll", "<scroll_name>");
+        scrollManager = ScrollManager.getInstance();
     }
 
     @Override
@@ -19,7 +23,7 @@ public class InfoCommand extends CommandNode {
         if (args.size() == 0) {
             throw new CommandArgumentException("scroll name");
         }
-        Scroll scroll = ScrollManager.getInstance().getScroll(args.get(0));
+        Scroll scroll = scrollManager.getScroll(args.get(0));
         sender.sendMessage("scroll: " + scroll.getName());
         scroll.getCommands().forEach(cmd -> {
             sender.sendMessage(cmd.getType() + " " + cmd.getCommand());
@@ -34,6 +38,6 @@ public class InfoCommand extends CommandNode {
 
     @Override
     public List<String> executeTabCompletion(CommandSender sender, List<String> args) {
-        return null;
+        return new ArrayList<>(scrollManager.getAllScroll().keySet());
     }
 }

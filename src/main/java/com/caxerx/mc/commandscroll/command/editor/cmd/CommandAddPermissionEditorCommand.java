@@ -13,8 +13,8 @@ public class CommandAddPermissionEditorCommand extends CommandNode {
 
     public CommandAddPermissionEditorCommand(CommandNode parent) {
         super(parent, "ap", "commandscroll.edit", "Add a permission to selected command", "<permission>");
-        commandSelectManager = CommandSelectManager.getInstance();
         addAlias("addpermission");
+        commandSelectManager = CommandSelectManager.getInstance();
     }
 
     @Override

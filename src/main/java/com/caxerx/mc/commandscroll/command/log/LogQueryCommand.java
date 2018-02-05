@@ -6,9 +6,12 @@ import com.caxerx.mc.commandscroll.command.display.TimeDisplayConfig;
 import com.caxerx.mc.commandscroll.logging.DatabaseController;
 import com.caxerx.mc.commandscroll.logging.query.QueryResult;
 import com.caxerx.mc.commandscroll.logging.query.condition.ConditionParser;
+import com.google.common.collect.Lists;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LogQueryCommand extends CommandNode {
@@ -35,6 +38,11 @@ public class LogQueryCommand extends CommandNode {
 
     @Override
     public List<String> executeTabCompletion(CommandSender sender, List<String> args) {
-        return null;
+        if (args.get(args.size() - 1).startsWith("p:")) {
+            List<String> playerls = new ArrayList<>();
+            Bukkit.getOnlinePlayers().forEach(p -> playerls.add("p:" + p.getName()));
+            return playerls;
+        }
+        return Lists.newArrayList("w:", "p:", "u:", "s:", "r:", "t:");
     }
 }

@@ -14,9 +14,7 @@ public class DefaultCommand extends CommandNode {
     @Override
     public boolean executeCommand(CommandSender sender, List<String> args) {
         HelpOutputBuilder builder = new HelpOutputBuilder(this);
-        getSubCommands().forEach(sub -> {
-            builder.append(sub);
-        });
+        getSubCommands().forEach(builder::append);
         sender.spigot().sendMessage(builder.build());
         return true;
     }
