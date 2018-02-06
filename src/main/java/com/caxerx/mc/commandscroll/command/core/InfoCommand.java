@@ -2,9 +2,9 @@ package com.caxerx.mc.commandscroll.command.core;
 
 import com.caxerx.mc.commandscroll.command.CommandArgumentException;
 import com.caxerx.mc.commandscroll.command.CommandNode;
+import com.caxerx.mc.commandscroll.command.display.ScrollInfoBuilder;
 import com.caxerx.mc.commandscroll.scroll.Scroll;
 import com.caxerx.mc.commandscroll.scroll.ScrollManager;
-import com.caxerx.mc.commandscroll.scroll.command.PermissionCommand;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
@@ -24,6 +24,8 @@ public class InfoCommand extends CommandNode {
             throw new CommandArgumentException("scroll name");
         }
         Scroll scroll = scrollManager.getScroll(args.get(0));
+        sender.spigot().sendMessage(new ScrollInfoBuilder(scroll).getInfo());
+        /*
         sender.sendMessage("scroll: " + scroll.getName());
         scroll.getCommands().forEach(cmd -> {
             sender.sendMessage(cmd.getType() + " " + cmd.getCommand());
@@ -31,6 +33,7 @@ public class InfoCommand extends CommandNode {
                 ((PermissionCommand) cmd).getPermission().forEach(pem -> sender.sendMessage(" -" + pem));
             }
         });
+        */
         return true;
     }
 

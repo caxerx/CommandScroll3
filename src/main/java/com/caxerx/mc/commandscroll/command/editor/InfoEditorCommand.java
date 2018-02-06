@@ -2,9 +2,9 @@ package com.caxerx.mc.commandscroll.command.editor;
 
 import com.caxerx.mc.commandscroll.command.CommandNode;
 import com.caxerx.mc.commandscroll.command.CommandSelectManager;
+import com.caxerx.mc.commandscroll.command.display.ScrollInfoBuilder;
 import com.caxerx.mc.commandscroll.scroll.Scroll;
 import com.caxerx.mc.commandscroll.scroll.ScrollManager;
-import com.caxerx.mc.commandscroll.scroll.command.PermissionCommand;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
@@ -23,13 +23,7 @@ public class InfoEditorCommand extends CommandNode {
     public boolean executeCommand(CommandSender sender, List<String> args) {
         if (commandSelectManager.isSelectedScroll(sender)) {
             Scroll scroll = commandSelectManager.getSelectedScroll(sender);
-            sender.sendMessage("selected " + scroll.getName());
-            scroll.getCommands().forEach(cmd -> {
-                sender.sendMessage(cmd.getType() + " " + cmd.getCommand());
-                if (cmd instanceof PermissionCommand) {
-                    ((PermissionCommand) cmd).getPermission().forEach(pem -> sender.sendMessage(" -" + pem));
-                }
-            });
+            sender.spigot().sendMessage(new ScrollInfoBuilder(scroll, true).getInfo());
         } else {
             sender.sendMessage("not selected");
         }
