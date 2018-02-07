@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CreateEditorCommand extends CommandNode {
     public CreateEditorCommand(CommandNode parent) {
-        super(parent,"create", "commandscroll.edit", "Create and select a scroll", "<scroll_name>");
+        super(parent, "create", "commandscroll.edit", "Create and select a scroll", "<scroll_name>");
         addAlias("add");
     }
 
@@ -23,7 +23,7 @@ public class CreateEditorCommand extends CommandNode {
         Scroll scroll = new Scroll(args.get(0));
         ScrollManager.getInstance().addScroll(scroll);
         CommandSelectManager.getInstance().selectScroll(sender, args.get(0));
-        sender.sendMessage("created and selected scroll " + scroll.getName());
+        sender.sendMessage("Scroll " + scroll.getName() + " is created and selected");
         return true;
     }
 

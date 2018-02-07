@@ -3,6 +3,7 @@ package com.caxerx.mc.commandscroll.command.editor.cmd;
 import com.caxerx.mc.commandscroll.command.CommandArgumentException;
 import com.caxerx.mc.commandscroll.command.CommandNode;
 import com.caxerx.mc.commandscroll.command.CommandSelectManager;
+import com.caxerx.mc.commandscroll.command.ScrollNotSelectedException;
 import com.caxerx.mc.commandscroll.scroll.Scroll;
 import com.caxerx.mc.commandscroll.scroll.ScrollManager;
 import org.bukkit.command.CommandSender;
@@ -35,9 +36,9 @@ public class SelectCommandEditorCommand extends CommandNode {
             }
             Scroll scroll = commandSelectManager.getSelectedScroll(sender);
             commandSelectManager.selectCommand(sender, idx);
-            sender.sendMessage("selected cmd");
+            sender.sendMessage("Command is selected");
         } else {
-            sender.sendMessage("select scroll first");
+            throw new ScrollNotSelectedException();
         }
         return true;
     }

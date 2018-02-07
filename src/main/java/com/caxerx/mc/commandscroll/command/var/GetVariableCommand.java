@@ -25,7 +25,7 @@ public class GetVariableCommand extends CommandNode {
         if (res != null) {
             sender.sendMessage(args.get(0) + " = " + res);
         } else {
-            sender.sendMessage(args.get(0) + " not found");
+            sender.sendMessage("Variable " + args.get(0) + " not found");
         }
         return true;
     }

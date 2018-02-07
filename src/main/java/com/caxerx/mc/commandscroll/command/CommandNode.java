@@ -34,9 +34,9 @@ public abstract class CommandNode {
         this.usage = usage;
     }
 
-    public void addAlias(@NonNull String alias) {
-        if (!alias.contains(alias)) {
-            this.alias.add(alias);
+    public void addAlias(@NonNull String ali) {
+        if (!alias.contains(ali)) {
+            this.alias.add(ali);
         }
     }
 
@@ -105,8 +105,8 @@ public abstract class CommandNode {
     }
 
     public boolean match(@NonNull String args) {
-        for (String alias : alias) {
-            if (args.equalsIgnoreCase(alias)) {
+        for (String ali : alias) {
+            if (args.equalsIgnoreCase(ali)) {
                 return true;
             }
         }

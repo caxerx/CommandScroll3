@@ -2,6 +2,7 @@ package com.caxerx.mc.commandscroll.command.core;
 
 import com.caxerx.mc.commandscroll.command.CommandArgumentException;
 import com.caxerx.mc.commandscroll.command.CommandNode;
+import com.caxerx.mc.commandscroll.command.ScrollNotExistException;
 import com.caxerx.mc.commandscroll.command.display.ScrollInfoBuilder;
 import com.caxerx.mc.commandscroll.scroll.Scroll;
 import com.caxerx.mc.commandscroll.scroll.ScrollManager;
@@ -23,8 +24,12 @@ public class InfoCommand extends CommandNode {
         if (args.size() == 0) {
             throw new CommandArgumentException("scroll name");
         }
-        Scroll scroll = scrollManager.getScroll(args.get(0));
-        sender.spigot().sendMessage(new ScrollInfoBuilder(scroll).getInfo());
+        if(scrollManager.hasScroll(args.get(0))) {
+            Scroll scroll = scrollManager.getScroll(args.get(0));
+            sender.spigot().sendMessage(new ScrollInfoBuilder(scroll).getInfo());
+        }else{
+            throw new ScrollNotExistException(args.get(0));
+        }
         /*
         sender.sendMessage("scroll: " + scroll.getName());
         scroll.getCommands().forEach(cmd -> {

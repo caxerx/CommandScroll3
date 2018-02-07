@@ -24,7 +24,7 @@ public class CommitEditorCommand extends CommandNode {
         if (commandSelectManager.isSelectedScroll(sender)) {
             Scroll scroll = commandSelectManager.getSelectedScroll(sender);
             commandSelectManager.commitEdit(sender);
-            sender.sendMessage("commited");
+            sender.sendMessage("Scroll change has applied");
         }
         return true;
     }

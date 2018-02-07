@@ -1,7 +1,9 @@
 package com.caxerx.mc.commandscroll.command.editor.cmd;
 
 import com.caxerx.mc.commandscroll.command.CommandNode;
+import com.caxerx.mc.commandscroll.command.CommandNotSelectedException;
 import com.caxerx.mc.commandscroll.command.CommandSelectManager;
+import com.caxerx.mc.commandscroll.command.ScrollNotSelectedException;
 import com.caxerx.mc.commandscroll.scroll.command.CommandBuilder;
 import com.google.common.collect.Lists;
 import org.bukkit.command.CommandSender;
@@ -38,12 +40,12 @@ public class SetCommandTypeEditorCommand extends CommandNode {
                 }
                 commandBuilder.set(commandSelectManager.getSelectedCommand(sender).getCommand());
                 commandSelectManager.setSelectedCommand(sender, commandBuilder.build());
-                sender.sendMessage("setted command type");
+                sender.sendMessage("Command type has set to " + args.get(0));
             } else {
-                sender.sendMessage("select command first");
+                throw new CommandNotSelectedException();
             }
         } else {
-            sender.sendMessage("select scroll first");
+            throw new ScrollNotSelectedException();
         }
         return false;
     }

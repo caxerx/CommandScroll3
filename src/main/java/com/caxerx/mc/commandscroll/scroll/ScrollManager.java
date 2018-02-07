@@ -38,6 +38,10 @@ public class ScrollManager {
         return registeredScroll;
     }
 
+    public boolean hasScroll(String scrollName) {
+        return registeredScroll.containsKey(scrollName);
+    }
+
     public ExecutableCommand cloneCommand(ExecutableCommand cmd) {
         return gson.fromJson(gson.toJson(cmd), ExecutableCommand.class);
     }

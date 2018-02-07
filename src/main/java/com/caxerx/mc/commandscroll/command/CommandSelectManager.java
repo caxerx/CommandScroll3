@@ -1,6 +1,5 @@
 package com.caxerx.mc.commandscroll.command;
 
-import com.caxerx.mc.commandscroll.ScrollNotExistException;
 import com.caxerx.mc.commandscroll.scroll.Scroll;
 import com.caxerx.mc.commandscroll.scroll.ScrollManager;
 import com.caxerx.mc.commandscroll.scroll.command.ExecutableCommand;
@@ -46,10 +45,14 @@ public class CommandSelectManager {
     }
 
     public ExecutableCommand selectCommand(@NonNull CommandSender sender, int commandIndex) {
-        ExecutableCommand command = getSelectedScroll(sender).getCommands().get(commandIndex);
-        selectedCommand.put(sender, command);
-        selectedCommandIndex.put(sender, commandIndex);
-        return command;
+        try {
+            ExecutableCommand command = getSelectedScroll(sender).getCommands().get(commandIndex);
+            selectedCommand.put(sender, command);
+            selectedCommandIndex.put(sender, commandIndex);
+            return command;
+        }catch (IndexOutOfBoundsException e){
+            throw new CommandNotExistException();
+        }
     }
 
     public ExecutableCommand setSelectedCommand(@NonNull CommandSender commandSender, ExecutableCommand command) {

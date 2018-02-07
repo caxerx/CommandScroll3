@@ -2,6 +2,7 @@ package com.caxerx.mc.commandscroll.command.editor;
 
 import com.caxerx.mc.commandscroll.command.CommandNode;
 import com.caxerx.mc.commandscroll.command.CommandSelectManager;
+import com.caxerx.mc.commandscroll.command.ScrollNotSelectedException;
 import com.caxerx.mc.commandscroll.command.display.ScrollInfoBuilder;
 import com.caxerx.mc.commandscroll.scroll.Scroll;
 import com.caxerx.mc.commandscroll.scroll.ScrollManager;
@@ -25,7 +26,7 @@ public class InfoEditorCommand extends CommandNode {
             Scroll scroll = commandSelectManager.getSelectedScroll(sender);
             sender.spigot().sendMessage(new ScrollInfoBuilder(scroll, true).getInfo());
         } else {
-            sender.sendMessage("not selected");
+            throw new ScrollNotSelectedException();
         }
 
         return true;

@@ -1,8 +1,6 @@
 package com.caxerx.mc.commandscroll.command.editor.cmd;
 
-import com.caxerx.mc.commandscroll.command.CommandArgumentException;
-import com.caxerx.mc.commandscroll.command.CommandNode;
-import com.caxerx.mc.commandscroll.command.CommandSelectManager;
+import com.caxerx.mc.commandscroll.command.*;
 import com.caxerx.mc.commandscroll.scroll.command.PermissionCommand;
 import org.bukkit.command.CommandSender;
 
@@ -31,10 +29,10 @@ public class CommandAddPermissionEditorCommand extends CommandNode {
                     sender.sendMessage("not a perm cmd");
                 }
             } else {
-                sender.sendMessage("select command first");
+                throw new CommandNotSelectedException();
             }
         } else {
-            sender.sendMessage("select scroll first");
+            throw new ScrollNotSelectedException();
         }
         return true;
     }

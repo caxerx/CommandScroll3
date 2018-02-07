@@ -26,7 +26,7 @@ public class SelectEditorCommand extends CommandNode {
         }
 
         Scroll scroll = CommandSelectManager.getInstance().selectScroll(sender, args.get(0));
-        sender.sendMessage("selected scroll " + scroll.getName());
+        sender.sendMessage("Scroll " + scroll.getName() + " is selected");
         return true;
     }
 
