@@ -55,7 +55,7 @@ public class CommandScroll extends JavaPlugin {
         }
 
         instance = this;
-
+        setupPermissions();
 
         if (FileManager.fromFile(VariableManager.class, new File(getDataFolder(), "variable.json")) == null) {
             new VariableManager();
