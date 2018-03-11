@@ -11,7 +11,7 @@ public class PermissionManager {
     private static PermissionManager instance = null;
     private Permission vaultPermissionController;
 
-    private PermissionManager(@NonNull Permission vaultPermissionController) {
+    public PermissionManager(@NonNull Permission vaultPermissionController) {
         this.vaultPermissionController = vaultPermissionController;
         instance = this;
     }

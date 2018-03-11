@@ -50,7 +50,7 @@ public class CommandSelectManager {
             selectedCommand.put(sender, command);
             selectedCommandIndex.put(sender, commandIndex);
             return command;
-        }catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             throw new CommandNotExistException();
         }
     }
@@ -75,6 +75,7 @@ public class CommandSelectManager {
         selectedCommandIndex.remove(sender);
         selectedCommand.remove(sender);
         selectedScroll.remove(sender);
+        scrollManager.commitChange();
     }
 
 }

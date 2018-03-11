@@ -1,8 +1,17 @@
 package com.caxerx.mc.commandscroll.placeholder;
 
+import com.caxerx.mc.commandscroll.CommandScroll;
+import com.caxerx.mc.commandscroll.FileManager;
+import com.google.gson.Gson;
 import lombok.NonNull;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.bukkit.util.FileUtil;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +30,9 @@ public class VariableManager {
     }
 
     public String put(@NonNull String key, @NonNull String value) {
-        return variableMap.put(key, value);
+        String rt = variableMap.put(key, value);
+        FileManager.saveToFile(this, new File(CommandScroll.getInstance().getDataFolder(), "variable.json"));
+        return rt;
     }
 
     public void remove(@NonNull String key) {
@@ -49,4 +60,6 @@ public class VariableManager {
         });
         return result;
     }
+
+
 }

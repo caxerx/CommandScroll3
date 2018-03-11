@@ -1,21 +1,24 @@
 package com.caxerx.mc.commandscroll.scroll;
 
+import com.caxerx.mc.commandscroll.CommandScroll;
+import com.caxerx.mc.commandscroll.FileManager;
 import com.caxerx.mc.commandscroll.scroll.command.CommandDeserializer;
 import com.caxerx.mc.commandscroll.scroll.command.ExecutableCommand;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.NonNull;
 
+import java.io.File;
 import java.util.HashMap;
 
 public class ScrollManager {
     private HashMap<String, Scroll> registeredScroll = new HashMap<>();
-    private Gson gson;
-    private static ScrollManager instance;
+    transient private static ScrollManager instance;
+    transient private static Gson gson;
 
     public ScrollManager() {
-        gson = new GsonBuilder().registerTypeAdapter(ExecutableCommand.class, new CommandDeserializer()).create();
         instance = this;
+        gson = CommandScroll.getGson();
     }
 
     public static ScrollManager getInstance() {
@@ -49,4 +52,9 @@ public class ScrollManager {
     public Scroll cloneScroll(Scroll scroll) {
         return gson.fromJson(gson.toJson(scroll), Scroll.class);
     }
+
+    public void commitChange() {
+        FileManager.saveToFile(this, new File(CommandScroll.getInstance().getDataFolder(), "scroll.json"), CommandScroll.getGson());
+    }
+
 }
